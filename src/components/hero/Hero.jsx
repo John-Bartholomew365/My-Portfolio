@@ -196,7 +196,7 @@ const Hero = () => {
             </span>
           </h1>
           <p className="w-[400px] py-[20px]">
-            I'm a frontend developer specializing in creating engaging and
+            I&apos;m a frontend developer specializing in creating engaging and
             responsive web experiences using HTML, CSS, and JavaScript. <br />
             Passionate about bringing ideas to life, I strive to make the web
             more beautiful and user-friendly.

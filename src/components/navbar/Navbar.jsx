@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { FaTasks } from 'react-icons/fa';
+import { FaDonate } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
+
 
 const Navbar = () => {
   const [solutions, setSolutions] = useState(false);
@@ -10,6 +14,18 @@ const Navbar = () => {
   const handleSolutions = () => {
     setSolutions(!solutions);
   };
+
+  useEffect(() => {
+    const closeShowOptions = (e) => {
+      if (!e.target.closest(".open")) {
+        setSolutions(false);
+      }
+    };
+    document.body.addEventListener("click", closeShowOptions);
+    return () => {
+      document.body.removeEventListener("click", closeShowOptions);
+    };
+  }, []);
 
   return (
     <div className="fixed w-full z-50 bg-black text-white py-4 px-[50px] justify-between items-center flex gap-[50px]">
@@ -42,19 +58,13 @@ const Navbar = () => {
             />
           </div>
           {solutions && (
-            <div className="absolute bg-[var(--primary-color)] rounded-md top-[50px] text-black p-8 w-[340px] h-[375px] left-[-80px] shadow-xl flex flex-col">
+            <div className="absolute bg-[var(--primary-color)] rounded-md top-[50px] text-black p-8 w-[340px] h-[310px] left-[-80px] shadow-2xl flex flex-col z-0">
               <div className="text-[var(--text-color)] mb-[25px]"></div>
               <div className="">
                 <Link href={"/multi-wallet"}>
                   <div className="flex gap-[15px] ">
                     <div className="mt-[13px]">
-                      <Image
-                        className=""
-                        src="/landingpage-image/multi-wallet-icon.svg"
-                        alt="Next.js Logo"
-                        width={35}
-                        height={35}
-                      />
+                    <FaUser size={30} color="red" />
                     </div>
                     <div>
                       <h1 className="font-bold text-[16px] text-[var(--text-color)]">
@@ -68,17 +78,11 @@ const Navbar = () => {
                 </Link>
               </div>
 
-              <div className="my-[20px]">
+              <div className="my-[30px]">
                 <Link href={"/bridge"}>
                   <div className="flex gap-[15px]">
                     <div className="mt-[13px]">
-                      <Image
-                        className=""
-                        src="/landingpage-image/bridge-icon.svg"
-                        alt="Next.js Logo"
-                        width={35}
-                        height={35}
-                      />
+                    <FaTasks size={30} color="red" />
                     </div>
                     <div>
                       <h1 className="font-bold text-[18px] text-[var(--text-color)]">
@@ -96,13 +100,7 @@ const Navbar = () => {
                 <Link href={"/buy"}>
                   <div className="flex gap-[15px]">
                     <div className="mt-[13px]">
-                      <Image
-                        className=""
-                        src="/landingpage-image/buy-icon.svg"
-                        alt="Next.js Logo"
-                        width={35}
-                        height={35}
-                      />
+                    <FaDonate size={30} color="red" />
                     </div>
                     <div>
                       <h1 className="font-bold text-[18px] text-[var(--text-color)]">
@@ -135,7 +133,7 @@ const Navbar = () => {
       <div>
         <Link href={""}>
           <div className="border-[1px] border-[#FF0000] py-[10px] px-[40px] rounded-[50px] hover hover:bg-[#FF0000] hover:text-white ">
-            <button>Let's talk</button>
+            <button>Let&apos;s talk</button>
           </div>
         </Link>
       </div>
